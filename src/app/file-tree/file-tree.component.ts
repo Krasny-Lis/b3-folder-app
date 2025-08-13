@@ -23,7 +23,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { selectUser } from '../state/user.selectors';
 import { AddFileDialogComponent } from './add-file-dialog.component';
 import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog.component';
-import { generateId } from '../utils/id-gen';
+import { IdGeneratorService } from '../utils/id-gen.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
@@ -62,7 +62,8 @@ export class FileTreeComponent {
   constructor(
     private store: Store<AppState>,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private idGenerator: IdGeneratorService
   ) {
     this.files$ = this.store.select(selectVisibleFiles);
     this.user$ = this.store.select(selectUser);
@@ -106,7 +107,7 @@ export class FileTreeComponent {
           this.store.dispatch(
             addFile({
               parentId: folder.id,
-              id: generateId(),
+              id: this.idGenerator.generateId(),
               name,
               owner: user,
             })
