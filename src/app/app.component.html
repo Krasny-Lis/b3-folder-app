@@ -1,0 +1,13 @@
+<div class="shell">
+  <h1>Drzewo Struktury Plików</h1>
+  <p>
+    Zalogowany jako:
+    <select [(ngModel)]="selectedUser" (ngModelChange)="onUserChange($event)">
+      <option *ngFor="let user of users; trackBy: trackByUser" [ngValue]="user">
+        {{ user }}
+      </option>
+    </select>
+    <button (click)="onReset()">Przywróć stan początkowy</button>
+  </p>
+  <app-file-tree></app-file-tree>
+</div>

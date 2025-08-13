@@ -1,0 +1,62 @@
+<div class="shell">
+  <mat-tree
+    class="tree"
+    [dataSource]="dataSource"
+    [childrenAccessor]="childrenAccessor"
+  >
+    <mat-tree-node
+      *matTreeNodeDef="let node; let level = level"
+      class="row file"
+      [style.--depth]="level"
+    >
+      <mat-icon class="icon">insert_drive_file</mat-icon>
+      <span class="name">{{ node.name }}</span>
+      <span class="owner">({{ node.owner }})</span>
+      <ng-container *ngIf="user$ | async as user">
+        <button
+          mat-icon-button
+          *ngIf="canModify(node, user)"
+          (click)="onDownload(node)"
+          aria-label="Download"
+        >
+          <mat-icon>download</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          *ngIf="canModify(node, user)"
+          (click)="onDelete(node)"
+          aria-label="Delete"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+    </mat-tree-node>
+
+    <mat-nested-tree-node
+      *matTreeNodeDef="let node; when: hasChild; let level = level"
+    >
+      <div
+        class="row folder"
+        [style.--depth]="level"
+        [attr.aria-expanded]="isExpanded(node)"
+        (click)="toggleNode(node)"
+      >
+        <mat-icon class="icon">
+          {{ isExpanded(node) ? "folder_open" : "folder" }}
+        </mat-icon>
+        <span class="name">{{ node.name }} ({{ getChildrenCount(node) }})</span>
+        <button
+          mat-button
+          class="link-button"
+          (click)="$event.stopPropagation(); onAddFile(node)"
+        >
+          Utwórz plik
+        </button>
+      </div>
+      <div *ngIf="isExpanded(node)">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </div>
+    </mat-nested-tree-node>
+  </mat-tree>
+</div>

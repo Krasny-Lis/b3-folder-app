@@ -1,0 +1,21 @@
+@use "@angular/material" as mat;
+@use "styles/theme" as theme;
+
+@include mat.core();
+
+$app-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: theme.$app-primary,
+      accent: theme.$app-accent,
+      warn: theme.$app-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($app-theme);
+
+:root {
+  --color-folder-icon: #{theme.get-color(theme.$app-primary)};
+  --color-file-icon: #{theme.get-color(theme.$app-accent)};
+}

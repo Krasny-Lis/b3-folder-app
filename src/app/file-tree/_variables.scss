@@ -1,0 +1,6 @@
+@use "theme" as theme;
+@use "@angular/material" as mat;
+
+$row-padding: 0.25rem 0.35rem;
+$row-hover-bg: theme.get-color(mat.$m2-grey-palette, 100);
+$row-expanded-bg: theme.get-color(mat.$m2-grey-palette, 200);
