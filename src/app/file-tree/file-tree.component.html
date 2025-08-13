@@ -8,6 +8,7 @@
       *matTreeNodeDef="let node; let level = level"
       class="row file"
       [style.--depth]="level"
+      [attr.data-cy]="node.name"
     >
       <mat-icon class="icon">insert_drive_file</mat-icon>
       <span class="name">{{ node.name }}</span>
@@ -18,6 +19,7 @@
           *ngIf="canModify(node, user)"
           (click)="onDownload(node)"
           aria-label="Download"
+          data-cy="download-button"
         >
           <mat-icon>download</mat-icon>
         </button>
@@ -27,6 +29,7 @@
           *ngIf="canModify(node, user)"
           (click)="onDelete(node)"
           aria-label="Delete"
+          data-cy="delete-button"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -41,6 +44,7 @@
         [style.--depth]="level"
         [attr.aria-expanded]="isExpanded(node)"
         (click)="toggleNode(node)"
+        [attr.data-cy]="node.name"
       >
         <mat-icon class="icon">
           {{ isExpanded(node) ? "folder_open" : "folder" }}
@@ -50,6 +54,7 @@
           mat-button
           class="link-button"
           (click)="$event.stopPropagation(); onAddFile(node)"
+          data-cy="add-file-button"
         >
           Utwórz plik
         </button>
