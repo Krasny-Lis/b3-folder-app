@@ -25,8 +25,12 @@ import { DialogBase } from './dialog-base';
       </mat-form-field>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="close()">Anuluj</button>
-      <button mat-button (click)="save()">Potwierdź</button>
+      <button mat-button (click)="close()" data-test="afd-cancel-button">
+        Anuluj
+      </button>
+      <button mat-button (click)="save()" data-test="afd-save-button">
+        Potwierdź
+      </button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

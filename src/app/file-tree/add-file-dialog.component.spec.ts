@@ -7,7 +7,7 @@ import { AddFileDialogComponent } from './add-file-dialog.component';
 describe('AddFileDialogComponent', () => {
   let dialog: MatDialog;
   let overlay: OverlayContainer;
-  let overlayElement: HTMLElement;
+  let overlayContainerElement: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('AddFileDialogComponent', () => {
 
     dialog = TestBed.inject(MatDialog);
     overlay = TestBed.inject(OverlayContainer);
-    overlayElement = overlay.getContainerElement();
+    overlayContainerElement = overlay.getContainerElement();
   });
 
   afterEach(() => {
@@ -30,10 +30,10 @@ describe('AddFileDialogComponent', () => {
 
     tick();
 
-    const cancelBtn = overlayElement.querySelector(
-      'button:nth-of-type(1)'
+    const cancelButton = overlayContainerElement.querySelector(
+      '[data-test="afd-cancel-button"]'
     ) as HTMLButtonElement;
-    cancelBtn.click();
+    cancelButton.click();
     tick();
 
     expect(result).toBeUndefined();
@@ -46,15 +46,17 @@ describe('AddFileDialogComponent', () => {
 
     tick();
 
-    const input = overlayElement.querySelector('input') as HTMLInputElement;
+    const input = overlayContainerElement.querySelector(
+      'input'
+    ) as HTMLInputElement;
     input.value = 'newfile.txt';
     input.dispatchEvent(new Event('input'));
     tick();
 
-    const saveBtn = overlayElement.querySelector(
-      'button:nth-of-type(2)'
+    const saveButton = overlayContainerElement.querySelector(
+      '[data-test="afd-save-button"]'
     ) as HTMLButtonElement;
-    saveBtn.click();
+    saveButton.click();
     tick();
 
     expect(result).toBe('newfile.txt');

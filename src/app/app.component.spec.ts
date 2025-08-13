@@ -36,5 +36,9 @@ describe('AppComponent', () => {
     const spy = spyOn(component, 'trackByUser').and.callThrough();
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
+    const user = component.users[0];
+    const index = 0;
+    const id = component.trackByUser(index, user);
+    expect(id).toBe(user);
   });
 });

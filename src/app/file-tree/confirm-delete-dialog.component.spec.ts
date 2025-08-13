@@ -35,7 +35,7 @@ describe('ConfirmDeleteDialogComponent', () => {
     });
 
     const cancelButton = overlayContainerElement.querySelector(
-      'button'
+      '[data-test="cdd-cancel-button"]'
     ) as HTMLButtonElement;
     cancelButton.click();
   });
@@ -47,8 +47,9 @@ describe('ConfirmDeleteDialogComponent', () => {
       done();
     });
 
-    const buttons = overlayContainerElement.querySelectorAll('button');
-    const deleteButton = buttons[1] as HTMLButtonElement;
+    const deleteButton = overlayContainerElement.querySelector(
+      '[data-test="cdd-delete-button"]'
+    ) as HTMLButtonElement;
     deleteButton.click();
   });
 });
