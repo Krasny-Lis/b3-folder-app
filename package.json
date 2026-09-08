@@ -1,6 +1,21 @@
 {
   "name": "b3-folder-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Angular file-tree demo with NgRx state and user-dependent access rules.",
+  "private": true,
+  "homepage": "https://krasny-lis.github.io/b3-folder-app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krasny-Lis/b3-folder-app.git"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "ngrx",
+    "angular-material",
+    "file-tree",
+    "github-pages"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +26,6 @@
     "e2e": "cypress run",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^19.2.14",
     "@angular/cdk": "^19.2.14",
